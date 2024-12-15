@@ -1,6 +1,8 @@
-<!-- src/routes/__layout.svelte -->
+<!-- src/routes/+layout.svelte -->
 <script>
-    import '../app.css'; // 引入 TailwindCSS 的样式文件
+    import '../app.css';
 </script>
 
+
 <slot />
+

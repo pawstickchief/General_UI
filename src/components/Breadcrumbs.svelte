@@ -1,3 +1,4 @@
+<!-- src/components/Breadcrumbs.svelte -->
 <script>
     export let breadcrumbs = ["Home", "Dashboard"]; // 面包屑数据通过 props 传入
 </script>

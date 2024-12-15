@@ -1,18 +1,12 @@
 <!-- src/components/Header.svelte -->
-<script>
+<script lang="ts">
     import Breadcrumbs from "./Breadcrumbs.svelte";
     import UserModule from "./UserModule.svelte";
     import Tabs from "./Tabs.svelte";
-
-    // 标签页数据示例
-    let tabs = [
-        { title: "分析页" },
-        { title: "工作台" },
-        { title: "关于" },
-    ];
-    const breadcrumbs = ["Home", "Dashboard"]; // 面包屑数据
-    let activeTab = 0;
-    const notifications = 3; // 未读消息数量
+    export let breadcrumbs: string[] = [];
+    export let tabs: string[] = [];
+    export let activeTab: number = 0;
+    export let notifications: number = 0;
 </script>
 
 <header

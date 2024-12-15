@@ -4,7 +4,7 @@
 
     export let username = "Vben";
     export let email = "ann.vben@gmail.com";
-    export let avatar = "https://via.placeholder.com/40";
+    export let avatar = "/favicon.png";
     export let status = "Pro";
     let isDarkMode = false; // 主题状态，默认亮色
 
