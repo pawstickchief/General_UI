@@ -1,5 +1,5 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
+	"extends": "",
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
@@ -10,8 +10,9 @@
 		"sourceMap": true,
 		"strict": true,
 		"moduleResolution": "bundler",
-		"types": ["node"], // 添加支持 Node.js 核心模块
+		"types": ["node","vite/client", "vitest"], // 添加支持 Node.js 核心模块
 		"target": "ES2020", // 确保支持现代语法
 		"lib": ["ES2020", "DOM"] // 添加 DOM 支持 (如果与浏览器交互)
-	}
+	},
+	"include": ["src/**/*", "svelte.config.js", "vite.config.ts"]
 }
