@@ -1,0 +1,13 @@
+{
+	"/": [],
+	"/api/login": [
+		"src/routes/api/login/+server.ts"
+	],
+	"/api/menu": [
+		"src/routes/api/menu/+server.ts"
+	],
+	"/dashboard": [],
+	"/login": [],
+	"/settings": [],
+	"/users": []
+}
