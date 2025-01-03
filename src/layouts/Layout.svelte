@@ -2,16 +2,19 @@
     import Sidebar from '../components/Sidebar.svelte';
     import Header from '../components/Header.svelte';
 
-    // 用来接收子组件传递的面包屑和标签数据
-    let breadcrumbs: string[] = ['主页', '仪表盘'];
-    let tabs = [{ title: '仪表盘' }];
+    // 面包屑和标签页由子组件传递
+    let breadcrumbs: string[] = [];
+    let tabs = [];
     let activeTab: number = 0;
     let notifications: number = 3;
 
-    // 处理从子组件传递的数据更新面包屑和标签页
+    // 监听 Sidebar 的事件，更新面包屑和标签页
     const updateBreadcrumbsAndTabs = (event: CustomEvent) => {
-        breadcrumbs = event.detail.breadcrumbs;
-        tabs = event.detail.tabs;
+        const { breadcrumbs: newBreadcrumbs, tabs: newTabs } = event.detail;
+
+        // 合并状态
+        breadcrumbs = newBreadcrumbs;
+        tabs = newTabs;
     };
 </script>
 
@@ -26,7 +29,6 @@
 
         <!-- 主体内容 -->
         <main class="flex-1 overflow-auto p-4">
-            <!-- 这里是主内容 -->
             <slot></slot>
         </main>
     </div>

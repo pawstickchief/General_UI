@@ -14,7 +14,7 @@ export const POST = async ({ request }: RequestEvent) => {
             rejectUnauthorized: false, // 忽略 SSL 验证
         });
 
-        const response = await fetch('https://127.0.0.1:8443/login', {
+        const response = await fetch('https://dev.pawstickchief.com:8007/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,14 +23,9 @@ export const POST = async ({ request }: RequestEvent) => {
             agent: httpsAgent,
         });
 
-        console.log('HTTP response status:', response.status);
         const result: BackendResponse = await response.json() as BackendResponse;
 
-        // 打印结果，调试数据
-        console.log('Login response data:', result);
-
         if (response.ok && result.code === 1000) {
-            console.log('Login successful:', result.data?.token);
 
             return json({
                 token: result.data?.token || '',
@@ -38,7 +33,6 @@ export const POST = async ({ request }: RequestEvent) => {
                 success: true,
             } as LoginResponse, { status: 200 });
         } else {
-            console.log('Login failed:', result.msg || 'Invalid credentials');
 
             return json(
                 {

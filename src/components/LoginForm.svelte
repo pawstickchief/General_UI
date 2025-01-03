@@ -19,19 +19,29 @@
             const result: LoginResponse = await response.json();
 
             if (result.success) {
-                authToken.set(result.token);
-
-                // 存储 token 到 cookies 中
-                document.cookie = `auth_token=${result.token}; path=/; max-age=${rememberMe ? 7 * 24 * 60 * 60 : 3600}`;
+                const expirationTime = rememberMe ? 7 * 24 * 60 * 60 : 24 * 60 * 60; // 7 天或 1 天
+                storeToken(result.token, expirationTime);
 
                 // 重定向到 dashboard
-                goto('/dashboard');
+                await goto('/dashboard');
             } else {
                 errorMessage = result.message;
             }
         } catch (error) {
             errorMessage = '登录失败，请稍后再试';
         }
+    };
+
+    // 封装存储 Token 的逻辑
+    const storeToken = (token: string, maxAge: number) => {
+        // 设置到 authToken store
+        authToken.set(token);
+
+        // 存储到 cookie
+        document.cookie = `auth_token=${token}; path=/; max-age=${maxAge}`;
+
+        // 存储到 localStorage
+        localStorage.setItem('auth_token', token);
     };
 </script>
 

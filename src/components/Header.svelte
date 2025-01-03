@@ -2,10 +2,7 @@
 <script lang="ts">
     import Breadcrumbs from "./Breadcrumbs.svelte";
     import UserModule from "./UserModule.svelte";
-    import Tabs from "./Tabs.svelte";
     export let breadcrumbs: string[] = [];
-    export let tabs: string[] = [];
-    export let activeTab: number = 0;
     export let notifications: number = 0;
 </script>
 
@@ -27,7 +24,6 @@
     </div>
 
     <!-- 底部部分：菜单标签页 -->
-    <Tabs {tabs} bind:activeTab />
 </header>
 
 

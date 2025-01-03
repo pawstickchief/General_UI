@@ -1,13 +1,29 @@
 {
-	"/": [],
+	"/": [
+		"src/routes/+layout.ts"
+	],
 	"/api/login": [
 		"src/routes/api/login/+server.ts"
 	],
 	"/api/menu": [
 		"src/routes/api/menu/+server.ts"
 	],
-	"/dashboard": [],
-	"/login": [],
-	"/settings": [],
-	"/users": []
+	"/dashboard": [
+		"src/routes/+layout.ts"
+	],
+	"/login": [
+		"src/routes/+layout.ts"
+	],
+	"/purview": [
+		"src/routes/+layout.ts"
+	],
+	"/settings": [
+		"src/routes/+layout.ts"
+	],
+	"/users": [
+		"src/routes/+layout.ts"
+	],
+	"/users/details": [
+		"src/routes/+layout.ts"
+	]
 }
