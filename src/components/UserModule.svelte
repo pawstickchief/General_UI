@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
     import { onMount } from "svelte";
+    import { goto } from "$app/navigation";
     import { browser } from "$app/environment";
 
-    export let username = "Vben";
-    export let email = "ann.vben@gmail.com";
+    export let username = "admin";
+    export let email = "admin@email.com";
     export let avatar = "/favicon.png";
-    export let status = "Pro";
+    export let status = "ok";
     let isDarkMode = false; // 主题状态，默认亮色
 
     // 切换主题函数
@@ -20,7 +21,6 @@
         localStorage.setItem("theme", isDarkMode ? "dark" : "light");
     };
 
-
     // 页面加载时，检查本地存储的主题
     onMount(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -32,11 +32,9 @@
         }
     });
 
-
-    let searchInput = "";
     let showDropdown = false;
 
-    // 仅在浏览器端添加点击事件监听器
+    // 添加点击事件监听器，处理点击外部关闭下拉菜单
     onMount(() => {
         if (browser) {
             const handleClickOutside = (event) => {
@@ -52,6 +50,19 @@
             };
         }
     });
+
+    // 退出登录函数
+    const handleLogout = () => {
+        // 清除 localStorage 数据
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("theme");
+
+        // 清除 cookie 数据
+        document.cookie = "auth_token=; path=/; max-age=0";
+
+        // 跳转到登录页面
+        goto("/login");
+    };
 </script>
 
 <div class="flex items-center space-x-4 relative">
@@ -68,23 +79,6 @@
             🌙 <!-- 暗色主题图标 -->
         {/if}
     </button>
-
-    <!-- 站内搜索框 -->
-    <div class="relative w-64">
-        <input
-                type="text"
-                placeholder="搜索..."
-                bind:value={searchInput}
-                class="input input-sm rounded-lg pl-4 pr-10 w-full
-                   border border-gray-300 dark:border-gray-600
-                   bg-lightBackground dark:bg-darkBackground
-                   text-lightText dark:text-darkText
-                   focus:ring-2 focus:ring-primary dark:focus:ring-accent
-                   focus:outline-none transition duration-300"
-        />
-        <span class="absolute right-3 top-1/2 -translate-y-1/2
-                     text-gray-400 dark:text-gray-300">🔍</span>
-    </div>
 
     <!-- 用户头像按钮 -->
     <div class="relative">
@@ -128,23 +122,12 @@
                 <ul class="space-y-1">
                     <li>
                         <a
-                                href="#"
+                                href="/users/profile"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700
                                    flex items-center space-x-2 transition duration-200"
                         >
                             <span>📄</span>
-                            <span>文档</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                                href="https://github.com"
-                                target="_blank"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700
-                                   flex items-center space-x-2 transition duration-200"
-                        >
-                            <span>🐙</span>
-                            <span>GitHub</span>
+                            <span>用户信息</span>
                         </a>
                     </li>
                     <li>
@@ -163,6 +146,7 @@
                             class="block w-full text-left px-4 py-2 text-danger
                                hover:bg-gray-100 dark:hover:bg-gray-700
                                hover:text-red-400 transition duration-200"
+                            on:click={handleLogout}
                     >
                         退出登录
                     </button>
@@ -171,5 +155,3 @@
         {/if}
     </div>
 </div>
-
-

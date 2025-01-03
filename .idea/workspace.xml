@@ -5,24 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1a96b38-2099-4f8f-bdfe-e6043e7ed3ae" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/src/routes/+layout.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/purview/+page.svelte" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/routes/users/details/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/Table.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/TableExportPrint.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/TablePagination.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Table/TableSearch.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/routes/users/profile/+page.svelte" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/stores/tableStore.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/generated/client/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/generated/client/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/generated/client/nodes/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/generated/client/nodes/0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/generated/client/nodes/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/generated/client/nodes/4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/generated/client/nodes/5.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/generated/client/nodes/5.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/generated/server/internal.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/generated/server/internal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/types/route_meta_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/dist/types/route_meta_data.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/types/src/routes/$types.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/types/src/routes/$types.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginForm.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginForm.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Sidebar.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Sidebar.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layouts/Layout.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/layouts/Layout.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/api/login/+server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api/login/+server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/api/menu/+server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api/menu/+server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserModule.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserModule.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/users/details/+page.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/users/details/+page.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +43,10 @@
         <option value="LoginForm" />
         <option value="+layout" />
         <option value="__layout" />
+        <option value="Table" />
+        <option value="TablePagination" />
+        <option value="TableSerch" />
+        <option value="TableExportPrint" />
         <option value="TypeScript File" />
       </list>
     </option>
@@ -86,7 +85,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "javascript.nodejs.core.library.configured.version": "20.18.0",
     "javascript.nodejs.core.library.typings.version": "20.17.10",
-    "last_opened_file_path": "D:/General_UI/src/routes/purview",
+    "last_opened_file_path": "D:/General_UI/src/routes/users/profile",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -99,11 +98,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\General_UI\src\routes\users\profile" />
       <recent name="D:\General_UI\src\routes\purview" />
       <recent name="D:\General_UI\src\routes\users\details" />
       <recent name="F:\data\workspace\General_UI\src\routes\dashboard" />
       <recent name="F:\data\workspace\General_UI\src\routes\users" />
-      <recent name="F:\data\workspace\General_UI\src\routes\setting" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\General_UI\src\layouts" />

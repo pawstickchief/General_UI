@@ -25,5 +25,8 @@
 	],
 	"/users/details": [
 		"src/routes/+layout.ts"
+	],
+	"/users/profile": [
+		"src/routes/+layout.ts"
 	]
 }
