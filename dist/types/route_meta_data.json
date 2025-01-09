@@ -8,6 +8,9 @@
 	"/api/menu": [
 		"src/routes/api/menu/+server.ts"
 	],
+	"/api/users": [
+		"src/routes/api/users/+server.ts"
+	],
 	"/dashboard": [
 		"src/routes/+layout.ts"
 	],

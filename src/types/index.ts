@@ -1,3 +1,5 @@
+
+
 // 菜单项类型定义
 export interface MenuItem {
     id: number;
@@ -8,6 +10,13 @@ export interface MenuItem {
     position: number;
     parent_id: number | null;
     children?: MenuItem[];
+}
+export interface User {
+    id: number;
+    username: string;
+    email: string;
+    role: string;
+    created_at: string;
 }
 
 // 面包屑项类型定义
