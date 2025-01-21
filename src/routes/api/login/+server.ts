@@ -22,7 +22,7 @@ export const POST = async ({ request }: RequestEvent) => {
             body: JSON.stringify({ username, password }),
             agent: httpsAgent,
         });
-
+console.log(response)
         const result: BackendResponse = await response.json() as BackendResponse;
 
         if (response.ok && result.code === 1000) {

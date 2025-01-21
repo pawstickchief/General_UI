@@ -2,7 +2,6 @@
     import { authToken } from '../stores/auth';
     import type { LoginRequest, LoginResponse } from '../types';
     import { goto } from '$app/navigation';
-
     let username = '';
     let password = '';
     let rememberMe = false;
