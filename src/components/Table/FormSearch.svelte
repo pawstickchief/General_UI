@@ -1,14 +1,21 @@
 <script lang="ts">
-    export let searchParams = []; // 搜索参数（父组件传递）
+    import { createEventDispatcher } from "svelte";
 
-    let searchInputs = {}; // 搜索输入的值
+    export let searchParams = []; // 搜索字段参数
+    let searchInputs: Record<string, string> = {}; // 存储用户输入的搜索条件
 
+    const dispatch = createEventDispatcher(); // 创建事件分发器
+
+    // 搜索逻辑
     const handleSearch = () => {
-        // 触发搜索逻辑
+        console.log("搜索参数:", searchInputs);
+        dispatch("search", { filters: searchInputs }); // 触发搜索事件，传递搜索数据
     };
 
+    // 重置搜索
     const handleReset = () => {
-        searchInputs = {};
+        searchInputs = {}; // 清空搜索数据
+        dispatch("search", { filters: {} }); // 重新搜索（清空过滤条件）
     };
 </script>
 
@@ -47,6 +54,7 @@
         </button>
     </div>
 </div>
+
 
 <style>
     .search-container {

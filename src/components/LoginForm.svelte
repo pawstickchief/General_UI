@@ -32,16 +32,22 @@
     };
 
     // 封装存储 Token 的逻辑
-    const storeToken = (token: string, maxAge: number) => {
-        // 设置到 authToken store
-        authToken.set(token);
+    const storeToken = (token: string, expiresInSeconds: number) => {
+        const expirationTime = Date.now() + expiresInSeconds * 1000; // 计算过期时间（时间戳）
 
-        // 存储到 cookie
-        document.cookie = `auth_token=${token}; path=/; max-age=${maxAge}`;
+        // **存储 Token 到 Cookie**
+        document.cookie = `auth_token=${token}; path=/; max-age=${expiresInSeconds}`;
+        document.cookie = `token_expiration=${expirationTime}; path=/; max-age=${expiresInSeconds}`;
 
-        // 存储到 localStorage
-        localStorage.setItem('auth_token', token);
+        // **存储 Token 到 LocalStorage**
+        localStorage.setItem("auth_token", token);
+        localStorage.setItem("token_expiration", expirationTime.toString()); // **以时间戳格式存储**
+
+        console.log(`🔑 Token: ${token}`);
+        console.log(`⏳ Token 过期时间（时间戳）: ${expirationTime}`);
     };
+
+
 </script>
 
 

@@ -95,7 +95,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "javascript.nodejs.core.library.configured.version": "20.18.0",
     "javascript.nodejs.core.library.typings.version": "20.17.10",
-    "last_opened_file_path": "D:/General_UI/src/routes/settings/role",
+    "last_opened_file_path": "D:/General_UI/src/routes/api/users/update",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -108,18 +108,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\General_UI\src\routes\api\users\update" />
       <recent name="D:\General_UI\src\routes\settings\role" />
       <recent name="D:\General_UI\src\routes\settings\menu" />
       <recent name="D:\General_UI\src\routes\users\profile" />
       <recent name="D:\General_UI\src\routes\purview" />
-      <recent name="D:\General_UI\src\routes\users\details" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\General_UI\src\routes\api\users\delete" />
       <recent name="D:\General_UI\src\routes\settings" />
       <recent name="D:\General_UI\src\components" />
       <recent name="D:\General_UI\src\layouts" />
       <recent name="F:\data\workspace\General_UI\src\routes\dashboard" />
-      <recent name="F:\data\workspace\General_UI\src\routes" />
     </key>
   </component>
   <component name="SharedIndexes">

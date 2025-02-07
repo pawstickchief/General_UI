@@ -1,10 +1,14 @@
 <script lang="ts">
-    export let columns = []; // 表格列
-    export let rows = []; // 表格行
+    import { createEventDispatcher } from "svelte";
+
+    export let columns = [];
+    export let rows = [];
 
     let selectedRows: Set<number> = new Set(); // 记录选中的行 ID
     let visibleColumns = [...columns]; // 动态显示的列
     let allSelected = false; // 是否全选
+
+    const dispatch = createEventDispatcher(); // 事件分发器
 
     // 切换列显示状态
     const toggleColumnVisibility = (key: string) => {
@@ -30,22 +34,24 @@
         allSelected = !allSelected;
     };
 
-    // 批量删除
+    // 触发删除事件（单行）
+    const deleteRow = (row) => {
+        dispatch("delete",row);
+    };
+    const handleAddUser = () => {
+        dispatch("addUser"); // 触发 addUser 事件，通知父组件
+        console.log("添加")
+    };
+    // 触发批量删除事件
     const deleteSelected = () => {
-        rows = rows.filter(row => !selectedRows.has(row.id));
+        dispatch("bulkDelete", { ids: Array.from(selectedRows) });
         selectedRows.clear();
         allSelected = false;
     };
 
-    // 单行删除
-    const deleteRow = (id: number) => {
-        rows = rows.filter(row => row.id !== id);
-        selectedRows.delete(id);
-    };
-
-    // 编辑操作（占位，具体逻辑自行实现）
-    const editRow = (id: number) => {
-        alert(`编辑行 ID: ${id}`);
+    // 触发编辑事件
+    const editRow = (row) => {
+        dispatch("edit", row); // ✅ 传递整个 row 对象
     };
 </script>
 
@@ -99,8 +105,8 @@
                         {/each}
                         <!-- 操作列 -->
                         <td class="border-b border-borderLight dark:border-borderDark p-3 fixed-right">
-                            <button class="btn-edit" on:click={() => editRow(row.id)}>编辑</button>
-                            <button class="btn-delete" on:click={() => deleteRow(row.id)}>删除</button>
+                            <button class="btn-edit" on:click={() => editRow(row)}>编辑</button>
+                            <button class="btn-delete" on:click={() => deleteRow(row)}>删除</button>
                         </td>
                     </tr>
                 {/each}
@@ -117,11 +123,15 @@
 
     <!-- 批量操作 -->
     <div class="mt-4 flex justify-end gap-2">
+        <button class="btn-add" on:click={handleAddUser}>
+            添加用户
+        </button>
         <button class="btn-delete" on:click={deleteSelected} disabled={selectedRows.size === 0}>
             批量删除
         </button>
     </div>
 </div>
+
 
 <style>
     .table-wrapper {
@@ -158,7 +168,14 @@
         border-radius: 4px;
         margin-right: 0.5rem;
     }
-
+    .btn-add {
+        background-color: #007bff;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
     .btn-delete {
         background-color: #ef4444;
         color: #fff;

@@ -5,34 +5,45 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const { url, cookies } = event;
 	const pathname = url.pathname;
 
-	// 输出请求的路径
-	console.log('Checking path:', pathname);
+	console.log('🔍 Checking path:', pathname);
 
-	// 放行静态文件、API 和登录页面（包括任何以 /login 开头的路径）
+	// **放行不需要鉴权的路径**
 	if (
 		pathname.startsWith('/api') ||
 		pathname.startsWith('/login') ||
 		pathname.startsWith('/static')
 	) {
-		console.log('Path is allowed without authentication:', pathname);
-		return await resolve(event);
+		console.log('✅ Path is allowed without authentication:', pathname);
+		return resolve(event);
 	}
 
-	// 获取 auth_token 和 alternate_token
+	// **获取 Token 和 Token 过期时间**
 	const authToken = cookies.get('auth_token');
-	const alternateToken = cookies.get('alternate_token'); // 注意这里是 alternate_token，而不是 auth_token
+	const tokenExpiration = cookies.get('token_expiration');
 
-	// 输出 token 的调试信息
-	console.log('auth_token:', authToken);
-	console.log('alternate_token:', alternateToken);
+	console.log('🔑 auth_token:', authToken ? '存在' : '不存在');
+	console.log('⏳ token_expiration:', tokenExpiration || '不存在');
 
-	// 如果 auth_token 或 alternate_token 存在其中之一即可放行
-	if (authToken || alternateToken) {
-		console.log('Authenticated with at least one token');
-		return await resolve(event);
+	// **检查 Token 是否过期**
+	if (tokenExpiration) {
+		const expirationTime = parseInt(tokenExpiration);
+		if (Date.now() > expirationTime) {
+			console.log("🚨 Token 已过期，自动退出");
+
+			// **清除 Token**
+			cookies.set('auth_token', '', { path: '/', maxAge: 0 });
+			cookies.set('token_expiration', '', { path: '/', maxAge: 0 });
+
+			throw redirect(302, '/login'); // ✅ 过期后重定向
+		}
 	}
 
-	// 如果没有 token，重定向到登录页面
-	console.log('No valid token found, redirecting to login');
-	throw redirect(302, '/login');
+	// **如果没有 Token，重定向到登录页面**
+	if (!authToken) {
+		console.log('❌ No valid token found, redirecting to login');
+		throw redirect(302, '/login');
+	}
+
+	// **Token 有效，继续请求**
+	return resolve(event);
 };

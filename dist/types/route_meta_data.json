@@ -11,6 +11,15 @@
 	"/api/users": [
 		"src/routes/api/users/+server.ts"
 	],
+	"/api/users/add": [
+		"src/routes/api/users/add/+server.ts"
+	],
+	"/api/users/delete": [
+		"src/routes/api/users/delete/+server.ts"
+	],
+	"/api/users/update": [
+		"src/routes/api/users/update/+server.ts"
+	],
 	"/dashboard": [
 		"src/routes/+layout.ts"
 	],
