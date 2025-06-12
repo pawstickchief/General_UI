@@ -1,0 +1,1 @@
+import{a as p,t as r}from"../chunks/disclose-version.CCpMAAFc.js";import"../chunks/legacy.BWim2NN6.js";import{n as s}from"../chunks/runtime.BL0abR6R.js";import{L as e}from"../chunks/Layout.BjnZ7Ewd.js";var i=r('<p>用户配置</p> <div class="statistics"><p>统计数据展示</p></div>',1);function d(t){e(t,{children:(o,m)=>{var a=i();s(2),p(o,a)},$$slots:{default:!0}})}export{d as component};

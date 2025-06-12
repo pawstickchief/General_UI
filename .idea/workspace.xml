@@ -93,26 +93,26 @@
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "javascript.nodejs.core.library.configured.version": "20.18.0",
-    "javascript.nodejs.core.library.typings.version": "20.17.10",
-    "last_opened_file_path": "D:/General_UI/src/routes/api/users/update",
+    "javascript.nodejs.core.library.configured.version": "18.20.8",
+    "javascript.nodejs.core.library.typings.version": "18.19.111",
+    "last_opened_file_path": "/data/cod/General_UI/src/routes/api/dashboard",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "pnpm",
     "prettierjs.PrettierConfiguration.Package": "F:\\data\\workspace\\General_UI\\node_modules\\prettier",
     "settings.editor.selected.configurable": "http.proxy",
-    "ts.external.directory.path": "D:\\General_UI\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "/data/cod/General_UI/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/routes/api/dashboard" />
       <recent name="D:\General_UI\src\routes\api\users\update" />
       <recent name="D:\General_UI\src\routes\settings\role" />
       <recent name="D:\General_UI\src\routes\settings\menu" />
       <recent name="D:\General_UI\src\routes\users\profile" />
-      <recent name="D:\General_UI\src\routes\purview" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\General_UI\src\routes\api\users\delete" />
@@ -125,7 +125,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-gosdk-266795519c66-911b893a1778-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.13135.104" />
+        <option value="bundled-gosdk-d297c17c1fbd-d82d926f19eb-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-243.22562.186" />
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-GO-243.22562.186" />
       </set>
     </attachedChunks>
   </component>

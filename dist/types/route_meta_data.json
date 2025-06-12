@@ -1,6 +1,11 @@
 {
 	"/": [
+		"src/routes/+page.server.ts",
+		"src/routes/+layout.ts",
 		"src/routes/+layout.ts"
+	],
+	"/api/dashboard": [
+		"src/routes/api/dashboard/+server.ts"
 	],
 	"/api/login": [
 		"src/routes/api/login/+server.ts"

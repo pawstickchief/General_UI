@@ -2,10 +2,12 @@
     import { authToken } from '../stores/auth';
     import type { LoginRequest, LoginResponse } from '../types';
     import { goto } from '$app/navigation';
+    import { onMount } from 'svelte';
     let username = '';
     let password = '';
     let rememberMe = false;
     let errorMessage = '';
+
 
     const handleLogin = async () => {
         try {
@@ -46,7 +48,14 @@
         console.log(`🔑 Token: ${token}`);
         console.log(`⏳ Token 过期时间（时间戳）: ${expirationTime}`);
     };
+    onMount(() => {
+        const token = localStorage.getItem("auth_token");
+        const expiration = parseInt(localStorage.getItem("token_expiration") || "0", 10);
 
+        if (token && Date.now() < expiration) {
+            goto('/dashboard');
+        }
+    });
 
 </script>
 
