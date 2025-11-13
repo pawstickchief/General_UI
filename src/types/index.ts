@@ -46,5 +46,6 @@ export interface BackendResponse {
     msg: string;
     data?: {
         token: string;
+        expiresIn?: number;
     };
 }
