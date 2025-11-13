@@ -49,3 +49,7 @@ export interface BackendResponse {
         expiresIn?: number;
     };
 }
+
+export type { UserCreatePayload } from '../routes/api/users/add/+server';
+export type { UserUpdatePayload } from '../routes/api/users/update/+server';
+export type { UserApiResponse } from '../routes/api/users/schema';
