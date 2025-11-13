@@ -7,6 +7,7 @@
     const dispatch = createEventDispatcher();
 
     let menuItems: MenuItem[] = [];
+    let menuMap: Map<number, MenuItem> = new Map();
     let activeMenu: string | null = null;
     let token: string | null = null;
 
@@ -38,6 +39,7 @@
                 }
 
                 menuItems = await response.json();
+                menuMap = buildMenuMap(menuItems);
                 console.log('Menu items received:', menuItems);
 
                 // 根据当前路径初始化
@@ -71,13 +73,32 @@
         return undefined;
     };
 
+    const buildMenuMap = (items: MenuItem[]): Map<number, MenuItem> => {
+        const map = new Map<number, MenuItem>();
+
+        const traverse = (nodes: MenuItem[]) => {
+            nodes.forEach((node) => {
+                map.set(node.id, node);
+                if (node.children?.length) {
+                    traverse(node.children);
+                }
+            });
+        };
+
+        traverse(items);
+        return map;
+    };
+
     // 构建面包屑数据
     const buildBreadcrumbs = (menu: MenuItem): string[] => {
-        const crumbs = [];
-        while (menu) {
-            crumbs.unshift(menu.title);
-            menu = menuItems.find(item => item.id === menu.parent_id) as MenuItem;
+        const crumbs: string[] = [];
+        let current: MenuItem | undefined = menu;
+
+        while (current) {
+            crumbs.unshift(current.title);
+            current = current.parent_id ? menuMap.get(current.parent_id) : undefined;
         }
+
         return ['主页', ...crumbs];
     };
 

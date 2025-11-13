@@ -3,6 +3,33 @@ import https from 'https';
 import fetch from 'node-fetch';
 import type { LoginRequest, LoginResponse, BackendResponse } from '../../../types';
 
+const isBackendResponse = (value: unknown): value is BackendResponse => {
+    if (typeof value !== 'object' || value === null) {
+        return false;
+    }
+
+    const record = value as Record<string, unknown>;
+    if (typeof record.code !== 'number' || typeof record.msg !== 'string') {
+        return false;
+    }
+
+    if (record.data !== undefined) {
+        if (typeof record.data !== 'object' || record.data === null) {
+            return false;
+        }
+
+        const dataRecord = record.data as Record<string, unknown>;
+        if ('token' in dataRecord && typeof dataRecord.token !== 'string') {
+            return false;
+        }
+        if ('expiresIn' in dataRecord && typeof dataRecord.expiresIn !== 'number') {
+            return false;
+        }
+    }
+
+    return true;
+};
+
 export const POST = async ({ request }: RequestEvent) => {
     try {
         const { username, password, rememberMe }: LoginRequest = await request.json();
@@ -26,11 +53,24 @@ export const POST = async ({ request }: RequestEvent) => {
         });
 
         // 解析后端返回的 JSON
-        const result: unknown = await response.json();
+        const rawResult = await response.json();
+
+        if (!isBackendResponse(rawResult)) {
+            console.error('⚠️ 后端返回了无法识别的结构:', rawResult);
+            return json(
+                {
+                    message: 'Invalid response from authentication server',
+                    success: false,
+                } as LoginResponse,
+                { status: 502 }
+            );
+        }
+
+        const result = rawResult;
 
         // **后端响应成功**
-        if (response.ok && result.code === 1000 && result.data) {
-            const token = result.data.token || '';
+        if (response.ok && result.code === 1000 && result.data?.token) {
+            const token = result.data.token;
             const expiresIn = result.data.expiresIn ?? (rememberMe ? 7 * 24 * 60 * 60 : 24 * 60 * 60); // 后端未返回时，前端默认
 
             console.log(`⏳ Token 过期时间 (秒): ${expiresIn}，大约 ${expiresIn / 3600} 小时`);

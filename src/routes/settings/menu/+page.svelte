@@ -15,6 +15,7 @@
     // 数据状态
     let rows: User[] = []; // 保存从后端获取的当前页数据
     let totalItems = 0; // 数据总条数
+    let appliedFilters: Record<string, string> = {};
     let token: string | null = null;
 
     // 分页相关
@@ -48,6 +49,7 @@
                 body: JSON.stringify({
                     page: currentPage,
                     limit: itemsPerPage,
+                    filters: appliedFilters,
                 }),
             });
 
@@ -79,15 +81,10 @@
 
     // 搜索逻辑
     const handleSearch = (event) => {
-        const filters = event.detail;
-
-        rows = rows.filter((row) =>
-            Object.entries(filters).every(([key, value]) => value === '' || row[key]?.includes(value))
-        );
-
-        totalItems = rows.length;
+        const { filters } = event.detail || { filters: {} };
+        appliedFilters = filters || {};
         currentPage = 1; // 搜索后返回第一页
-        fetchData(); // 重新获取数据
+        fetchData(); // 根据最新条件重新获取数据
     };
 
     // 初始化数据
